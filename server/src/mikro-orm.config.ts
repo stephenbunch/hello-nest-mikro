@@ -12,6 +12,8 @@ const config: Options = {
   migrations: {
     path: 'dist/migrations',
     pathTs: 'src/migrations',
+    // https://github.com/mikro-orm/mikro-orm/issues/1842#issuecomment-845072313
+    disableForeignKeys: false,
   },
   driverOptions: {
     // https://github.com/mikro-orm/mikro-orm/issues/303#issuecomment-737342298
