@@ -6,6 +6,6 @@
   ],
   "scripts": {
     "start": "npm run start -w server",
-    "build": "npm run build -w web"
+    "build": "npm run build -w web && npm run migrate -w server"
   }
 }
