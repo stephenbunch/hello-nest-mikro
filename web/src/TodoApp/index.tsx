@@ -12,9 +12,7 @@ export function TodoApp() {
 
   const api = useApiClient();
 
-  const { data } = useQuery(EntityCacheKey.Todos, () =>
-    api.todosControllerFind()
-  );
+  const { data } = useQuery(EntityCacheKey.Todos, () => api.getTodos());
 
   const todos = useMemo(() => data?.data ?? [], [data]);
   const filteredTodos = useMemo(() => {

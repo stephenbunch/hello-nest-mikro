@@ -1,0 +1,11 @@
+{
+  "name": "hello-nest-mikro",
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "start": "npm run start -w server",
+    "build": "npm run build -w web"
+  }
+}

@@ -7,7 +7,7 @@ import { EntityCacheKey } from "../../../entity-cache";
 export function Input() {
   const queryClient = useQueryClient();
   const api = useApiClient();
-  const { mutateAsync: createTodo } = useMutation(api.todosControllerCreate);
+  const { mutateAsync: createTodo } = useMutation(api.createTodo);
 
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);

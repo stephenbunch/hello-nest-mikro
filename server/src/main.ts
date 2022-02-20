@@ -5,6 +5,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ApiModule } from './api/api.module';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -13,7 +14,7 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api', { exclude: ['health'] });
 
   const config = new DocumentBuilder()
     .setTitle('Hello Nest App')
@@ -21,8 +22,8 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/openapi', app, document);
+  SwaggerModule.setup('openapi', app, document);
 
-  await app.listen(8000, '0.0.0.0');
+  await app.listen(process.env.PORT ?? 8000, '0.0.0.0');
 }
 bootstrap();

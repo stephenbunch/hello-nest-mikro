@@ -2,19 +2,17 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TodoModule } from './todo/todo.module';
+import { HealthController } from './health.controller';
+import { ApiModule } from './api/api.module';
 
 @Module({
   imports: [
-    TodoModule,
     MikroOrmModule.forRoot(),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'web', 'build'),
     }),
+    ApiModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [HealthController],
 })
 export class AppModule {}

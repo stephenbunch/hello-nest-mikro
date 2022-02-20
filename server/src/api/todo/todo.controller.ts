@@ -18,15 +18,17 @@ import {
   ApiCreatedResponse,
   ApiNoContentResponse,
   ApiOkResponse,
+  ApiOperation,
 } from '@nestjs/swagger';
 
 @Controller('todos')
-export class TodosController {
+export class TodoController {
   constructor(
     @InjectRepository(Todo)
     private readonly todoRepository: EntityRepository<Todo>,
   ) {}
 
+  @ApiOperation({ operationId: 'getTodos' })
   @ApiOkResponse({ type: Todo, isArray: true })
   @Get()
   async find() {
@@ -35,6 +37,7 @@ export class TodosController {
     });
   }
 
+  @ApiOperation({ operationId: 'getTodo' })
   @ApiOkResponse({ type: Todo })
   @Get(':id')
   async findOne(@Param('id') id: string) {
@@ -47,6 +50,7 @@ export class TodosController {
     return todo;
   }
 
+  @ApiOperation({ operationId: 'createTodo' })
   @ApiCreatedResponse({ type: Todo })
   @Post()
   async create(@Body() body: CreateTodoDto) {
@@ -58,6 +62,7 @@ export class TodosController {
     return todo;
   }
 
+  @ApiOperation({ operationId: 'updateTodo' })
   @ApiOkResponse({ type: Todo })
   @Patch(':id')
   async update(@Param('id') id: string, @Body() body: UpdateTodoDto) {
@@ -73,6 +78,7 @@ export class TodosController {
     return todo;
   }
 
+  @ApiOperation({ operationId: 'deleteTodo' })
   @ApiNoContentResponse()
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
@@ -86,6 +92,7 @@ export class TodosController {
     await this.todoRepository.removeAndFlush(todo);
   }
 
+  @ApiOperation({ operationId: 'deleteCompletedTodos' })
   @Post('/delete-completed')
   @ApiNoContentResponse()
   @HttpCode(HttpStatus.NO_CONTENT)
@@ -93,6 +100,7 @@ export class TodosController {
     await this.todoRepository.nativeDelete({ completed: true });
   }
 
+  @ApiOperation({ operationId: 'updateTodos' })
   @ApiNoContentResponse()
   @Post('/update')
   @HttpCode(HttpStatus.NO_CONTENT)

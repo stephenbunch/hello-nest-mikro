@@ -93,42 +93,13 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appControllerGetHello: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {CreateTodoDto} createTodoDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerCreate: async (createTodoDto: CreateTodoDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createTodo: async (createTodoDto: CreateTodoDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'createTodoDto' is not null or undefined
-            assertParamExists('todosControllerCreate', 'createTodoDto', createTodoDto)
+            assertParamExists('createTodo', 'createTodoDto', createTodoDto)
             const localVarPath = `/api/todos`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -157,13 +128,42 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCompletedTodos: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/todos/delete-completed`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerDelete: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteTodo: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('todosControllerDelete', 'id', id)
+            assertParamExists('deleteTodo', 'id', id)
             const localVarPath = `/api/todos/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -190,40 +190,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerDeleteCompleted: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/todos/delete-completed`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        todosControllerFind: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/todos`;
+        getTodo: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getTodo', 'id', id)
+            const localVarPath = `/api/todos/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -248,15 +223,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerFindOne: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('todosControllerFindOne', 'id', id)
-            const localVarPath = `/api/todos/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        getTodos: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/todos`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -286,11 +257,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerUpdate: async (id: string, updateTodoDto: UpdateTodoDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateTodo: async (id: string, updateTodoDto: UpdateTodoDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('todosControllerUpdate', 'id', id)
+            assertParamExists('updateTodo', 'id', id)
             // verify required parameter 'updateTodoDto' is not null or undefined
-            assertParamExists('todosControllerUpdate', 'updateTodoDto', updateTodoDto)
+            assertParamExists('updateTodo', 'updateTodoDto', updateTodoDto)
             const localVarPath = `/api/todos/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -324,9 +295,9 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerUpdateMany: async (updateTodoDto: UpdateTodoDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateTodos: async (updateTodoDto: UpdateTodoDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'updateTodoDto' is not null or undefined
-            assertParamExists('todosControllerUpdateMany', 'updateTodoDto', updateTodoDto)
+            assertParamExists('updateTodos', 'updateTodoDto', updateTodoDto)
             const localVarPath = `/api/todos/update`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -365,21 +336,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async appControllerGetHello(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appControllerGetHello(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @param {CreateTodoDto} createTodoDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async todosControllerCreate(createTodoDto: CreateTodoDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Todo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.todosControllerCreate(createTodoDto, options);
+        async createTodo(createTodoDto: CreateTodoDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Todo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createTodo(createTodoDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteCompletedTodos(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCompletedTodos(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -388,26 +359,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async todosControllerDelete(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.todosControllerDelete(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async todosControllerDeleteCompleted(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.todosControllerDeleteCompleted(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async todosControllerFind(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Todo>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.todosControllerFind(options);
+        async deleteTodo(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteTodo(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -416,8 +369,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async todosControllerFindOne(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Todo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.todosControllerFindOne(id, options);
+        async getTodo(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Todo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTodo(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTodos(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Todo>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTodos(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -427,8 +389,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async todosControllerUpdate(id: string, updateTodoDto: UpdateTodoDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Todo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.todosControllerUpdate(id, updateTodoDto, options);
+        async updateTodo(id: string, updateTodoDto: UpdateTodoDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Todo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateTodo(id, updateTodoDto, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -437,8 +399,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async todosControllerUpdateMany(updateTodoDto: UpdateTodoDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.todosControllerUpdateMany(updateTodoDto, options);
+        async updateTodos(updateTodoDto: UpdateTodoDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateTodos(updateTodoDto, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -453,20 +415,20 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appControllerGetHello(options?: any): AxiosPromise<void> {
-            return localVarFp.appControllerGetHello(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {CreateTodoDto} createTodoDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerCreate(createTodoDto: CreateTodoDto, options?: any): AxiosPromise<Todo> {
-            return localVarFp.todosControllerCreate(createTodoDto, options).then((request) => request(axios, basePath));
+        createTodo(createTodoDto: CreateTodoDto, options?: any): AxiosPromise<Todo> {
+            return localVarFp.createTodo(createTodoDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCompletedTodos(options?: any): AxiosPromise<void> {
+            return localVarFp.deleteCompletedTodos(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -474,24 +436,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerDelete(id: string, options?: any): AxiosPromise<void> {
-            return localVarFp.todosControllerDelete(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        todosControllerDeleteCompleted(options?: any): AxiosPromise<void> {
-            return localVarFp.todosControllerDeleteCompleted(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        todosControllerFind(options?: any): AxiosPromise<Array<Todo>> {
-            return localVarFp.todosControllerFind(options).then((request) => request(axios, basePath));
+        deleteTodo(id: string, options?: any): AxiosPromise<void> {
+            return localVarFp.deleteTodo(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -499,8 +445,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerFindOne(id: string, options?: any): AxiosPromise<Todo> {
-            return localVarFp.todosControllerFindOne(id, options).then((request) => request(axios, basePath));
+        getTodo(id: string, options?: any): AxiosPromise<Todo> {
+            return localVarFp.getTodo(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTodos(options?: any): AxiosPromise<Array<Todo>> {
+            return localVarFp.getTodos(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -509,8 +463,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerUpdate(id: string, updateTodoDto: UpdateTodoDto, options?: any): AxiosPromise<Todo> {
-            return localVarFp.todosControllerUpdate(id, updateTodoDto, options).then((request) => request(axios, basePath));
+        updateTodo(id: string, updateTodoDto: UpdateTodoDto, options?: any): AxiosPromise<Todo> {
+            return localVarFp.updateTodo(id, updateTodoDto, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -518,85 +472,85 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        todosControllerUpdateMany(updateTodoDto: UpdateTodoDto, options?: any): AxiosPromise<void> {
-            return localVarFp.todosControllerUpdateMany(updateTodoDto, options).then((request) => request(axios, basePath));
+        updateTodos(updateTodoDto: UpdateTodoDto, options?: any): AxiosPromise<void> {
+            return localVarFp.updateTodos(updateTodoDto, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * Request parameters for todosControllerCreate operation in DefaultApi.
+ * Request parameters for createTodo operation in DefaultApi.
  * @export
- * @interface DefaultApiTodosControllerCreateRequest
+ * @interface DefaultApiCreateTodoRequest
  */
-export interface DefaultApiTodosControllerCreateRequest {
+export interface DefaultApiCreateTodoRequest {
     /**
      * 
      * @type {CreateTodoDto}
-     * @memberof DefaultApiTodosControllerCreate
+     * @memberof DefaultApiCreateTodo
      */
     readonly createTodoDto: CreateTodoDto
 }
 
 /**
- * Request parameters for todosControllerDelete operation in DefaultApi.
+ * Request parameters for deleteTodo operation in DefaultApi.
  * @export
- * @interface DefaultApiTodosControllerDeleteRequest
+ * @interface DefaultApiDeleteTodoRequest
  */
-export interface DefaultApiTodosControllerDeleteRequest {
+export interface DefaultApiDeleteTodoRequest {
     /**
      * 
      * @type {string}
-     * @memberof DefaultApiTodosControllerDelete
+     * @memberof DefaultApiDeleteTodo
      */
     readonly id: string
 }
 
 /**
- * Request parameters for todosControllerFindOne operation in DefaultApi.
+ * Request parameters for getTodo operation in DefaultApi.
  * @export
- * @interface DefaultApiTodosControllerFindOneRequest
+ * @interface DefaultApiGetTodoRequest
  */
-export interface DefaultApiTodosControllerFindOneRequest {
+export interface DefaultApiGetTodoRequest {
     /**
      * 
      * @type {string}
-     * @memberof DefaultApiTodosControllerFindOne
+     * @memberof DefaultApiGetTodo
      */
     readonly id: string
 }
 
 /**
- * Request parameters for todosControllerUpdate operation in DefaultApi.
+ * Request parameters for updateTodo operation in DefaultApi.
  * @export
- * @interface DefaultApiTodosControllerUpdateRequest
+ * @interface DefaultApiUpdateTodoRequest
  */
-export interface DefaultApiTodosControllerUpdateRequest {
+export interface DefaultApiUpdateTodoRequest {
     /**
      * 
      * @type {string}
-     * @memberof DefaultApiTodosControllerUpdate
+     * @memberof DefaultApiUpdateTodo
      */
     readonly id: string
 
     /**
      * 
      * @type {UpdateTodoDto}
-     * @memberof DefaultApiTodosControllerUpdate
+     * @memberof DefaultApiUpdateTodo
      */
     readonly updateTodoDto: UpdateTodoDto
 }
 
 /**
- * Request parameters for todosControllerUpdateMany operation in DefaultApi.
+ * Request parameters for updateTodos operation in DefaultApi.
  * @export
- * @interface DefaultApiTodosControllerUpdateManyRequest
+ * @interface DefaultApiUpdateTodosRequest
  */
-export interface DefaultApiTodosControllerUpdateManyRequest {
+export interface DefaultApiUpdateTodosRequest {
     /**
      * 
      * @type {UpdateTodoDto}
-     * @memberof DefaultApiTodosControllerUpdateMany
+     * @memberof DefaultApiUpdateTodos
      */
     readonly updateTodoDto: UpdateTodoDto
 }
@@ -610,34 +564,13 @@ export interface DefaultApiTodosControllerUpdateManyRequest {
 export class DefaultApi extends BaseAPI {
     /**
      * 
+     * @param {DefaultApiCreateTodoRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public appControllerGetHello(options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).appControllerGetHello(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {DefaultApiTodosControllerCreateRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public todosControllerCreate(requestParameters: DefaultApiTodosControllerCreateRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).todosControllerCreate(requestParameters.createTodoDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {DefaultApiTodosControllerDeleteRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public todosControllerDelete(requestParameters: DefaultApiTodosControllerDeleteRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).todosControllerDelete(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    public createTodo(requestParameters: DefaultApiCreateTodoRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).createTodo(requestParameters.createTodoDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -646,8 +579,30 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public todosControllerDeleteCompleted(options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).todosControllerDeleteCompleted(options).then((request) => request(this.axios, this.basePath));
+    public deleteCompletedTodos(options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).deleteCompletedTodos(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {DefaultApiDeleteTodoRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public deleteTodo(requestParameters: DefaultApiDeleteTodoRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).deleteTodo(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {DefaultApiGetTodoRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getTodo(requestParameters: DefaultApiGetTodoRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getTodo(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -656,41 +611,30 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public todosControllerFind(options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).todosControllerFind(options).then((request) => request(this.axios, this.basePath));
+    public getTodos(options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getTodos(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {DefaultApiTodosControllerFindOneRequest} requestParameters Request parameters.
+     * @param {DefaultApiUpdateTodoRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public todosControllerFindOne(requestParameters: DefaultApiTodosControllerFindOneRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).todosControllerFindOne(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    public updateTodo(requestParameters: DefaultApiUpdateTodoRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).updateTodo(requestParameters.id, requestParameters.updateTodoDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {DefaultApiTodosControllerUpdateRequest} requestParameters Request parameters.
+     * @param {DefaultApiUpdateTodosRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public todosControllerUpdate(requestParameters: DefaultApiTodosControllerUpdateRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).todosControllerUpdate(requestParameters.id, requestParameters.updateTodoDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {DefaultApiTodosControllerUpdateManyRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public todosControllerUpdateMany(requestParameters: DefaultApiTodosControllerUpdateManyRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).todosControllerUpdateMany(requestParameters.updateTodoDto, options).then((request) => request(this.axios, this.basePath));
+    public updateTodos(requestParameters: DefaultApiUpdateTodosRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).updateTodos(requestParameters.updateTodoDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

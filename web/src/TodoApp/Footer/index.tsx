@@ -16,7 +16,7 @@ export function Footer(props: FooterProps) {
   const queryClient = useQueryClient();
   const api = useApiClient();
   const { mutateAsync: deleteCompletedTodos } = useMutation(
-    api.todosControllerDeleteCompleted
+    api.deleteCompletedTodos
   );
 
   const onClearCompleted = useCallback(async () => {

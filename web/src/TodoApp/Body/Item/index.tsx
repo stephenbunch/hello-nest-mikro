@@ -15,12 +15,8 @@ export function Item(props: TodoItemProps) {
 
   const queryClient = useQueryClient();
   const api = useApiClient();
-  const { mutateAsync: deleteTodoMutation } = useMutation(
-    api.todosControllerDelete
-  );
-  const { mutateAsync: updateTodoMutation } = useMutation(
-    api.todosControllerUpdate
-  );
+  const { mutateAsync: deleteTodoMutation } = useMutation(api.deleteTodo);
+  const { mutateAsync: updateTodoMutation } = useMutation(api.updateTodo);
 
   const [editing, setEditing] = useState(false);
   const [description, setDescription] = useState("");

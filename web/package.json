@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate-api-client": "openapi-generator-cli generate -i http://localhost:8000/api/openapi/json -g typescript-axios -o src/api/ --additional-properties=useSingleRequestParameter=true"
+    "generate-api-client": "openapi-generator-cli generate -i http://localhost:8000/openapi/json -g typescript-axios -o src/api/ --additional-properties=useSingleRequestParameter=true"
   },
   "eslintConfig": {
     "extends": [

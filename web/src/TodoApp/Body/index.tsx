@@ -19,9 +19,7 @@ export function Body(props: BodyProps) {
 
   const queryClient = useQueryClient();
   const api = useApiClient();
-  const { mutateAsync: updateTodos } = useMutation(
-    api.todosControllerUpdateMany
-  );
+  const { mutateAsync: updateTodos } = useMutation(api.updateTodos);
 
   const toggleAll = useCallback(async () => {
     if (toggleAllChecked) {
