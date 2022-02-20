@@ -1,0 +1,26 @@
+databases:
+  - name: postgres
+
+services:
+  - type: web
+    name: nest-app
+    env: node
+    buildCommand: "npm run build"
+    startCommand: "npm start"
+    envVars:
+      - key: DB_PORT
+        fromDatabase:
+          name: postgres
+          property: port
+      - key: DB_HOST
+        fromDatabase:
+          name: postgres
+          property: host
+      - key: DB_USER
+        fromDatabase:
+          name: postgres
+          property: user
+      - key: DB_NAME
+        fromDatabase:
+          name: postgres
+          property: database

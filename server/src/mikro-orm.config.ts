@@ -9,7 +9,7 @@ const config: Options = {
   port,
   user: process.env.DB_USER ?? 'postgres',
   password: process.env.DB_PASS ?? 'postgres',
-  dbName: 'hello-nest-mikro',
+  dbName: process.env.DB_NAME ?? 'postgres',
   entities: [Todo],
   migrations: {
     path: 'dist/migrations',
