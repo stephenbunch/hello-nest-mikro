@@ -1,9 +1,11 @@
 databases:
   - name: postgres
+    plan: free
 
 services:
   - type: web
     name: nest-app
+    plan: free
     env: node
     buildCommand: "npm run build"
     startCommand: "npm start"
