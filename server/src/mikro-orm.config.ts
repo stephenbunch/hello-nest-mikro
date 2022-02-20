@@ -17,6 +17,7 @@ const config: Options = {
   },
   driverOptions: {
     // https://github.com/mikro-orm/mikro-orm/issues/303#issuecomment-737342298
+    // Also, make sure to set PGSSLMODE=require in Heroku.
     connection: {
       ssl: {
         rejectUnauthorized: false,
