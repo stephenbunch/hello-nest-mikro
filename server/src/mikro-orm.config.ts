@@ -1,15 +1,19 @@
 import { MikroOrmModuleOptions as Options } from '@mikro-orm/nestjs';
 import { Todo } from './entities/todo.entity';
+import { parse } from 'pg-connection-string';
 
-const port = process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432;
+const url =
+  process.env.DATABASE_URL ??
+  'postgres://postgres:postgres@localhost:5432/postgres';
+const options = parse(url);
 
 const config: Options = {
   type: 'postgresql',
-  host: process.env.DB_HOST ?? 'localhost',
-  port,
-  user: process.env.DB_USER ?? 'postgres',
-  password: process.env.DB_PASS ?? 'postgres',
-  dbName: process.env.DB_NAME ?? 'postgres',
+  host: options.host,
+  port: options.port !== undefined ? parseInt(options.port, 10) : undefined,
+  user: options.user,
+  password: options.password,
+  dbName: options.database,
   entities: [Todo],
   migrations: {
     path: 'dist/migrations',
