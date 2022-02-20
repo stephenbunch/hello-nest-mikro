@@ -5,6 +5,13 @@
     "web"
   ],
   "scripts": {
-    "start": "npm run start -w server"
+    "build": "npm run build -w web"
+  },
+  "cacheDirectories": [
+    "server/node_modules",
+    "web/node_modules"
+  ],
+  "engines": {
+    "node": "17.3.1"
   }
 }
